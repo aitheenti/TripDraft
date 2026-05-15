@@ -3,6 +3,10 @@ import Tripcard from "./components/Tripcard/Tripcard.tsx";
 import { tripCards } from "./mocks/trip-card.mocks";
 
 function App() {
+  const handleAddTrip = () => {
+    console.log("add trip");
+  };
+
   return (
     <>
       {tripCards.map((card) => (
@@ -13,6 +17,7 @@ function App() {
           key={card.tripName}
         />
       ))}
+      <button onClick={handleAddTrip}>Add new Trip</button>
     </>
   );
 }
