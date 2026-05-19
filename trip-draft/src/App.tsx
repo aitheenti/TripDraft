@@ -12,17 +12,27 @@ function App() {
     setTrips([...trips, tripToBeAdded]);
   };
 
+  const onDeleteTrip = (tripToBeDeleted: string): void => {
+    setTrips(trips.filter((trip) => trip.id !== tripToBeDeleted));
+  };
+
   return (
     <>
-      {trips.map((card) => (
-        <Tripcard
-          tripName={card.tripName}
-          destination={card.destination}
-          fromDate={card.fromDate}
-          toDate={card.toDate}
-          key={card.tripName}
-        />
-      ))}
+      {trips.length > 0 ? (
+        trips.map((card) => (
+          <Tripcard
+            tripName={card.tripName}
+            destination={card.destination}
+            fromDate={card.fromDate}
+            toDate={card.toDate}
+            key={card.tripName}
+            onDeleteTrip={onDeleteTrip}
+            id={card.id}
+          />
+        ))
+      ) : (
+        <h2>You've got only one life to travel.</h2>
+      )}
       <TripForm onAddTrip={onAddTrip} />
     </>
   );

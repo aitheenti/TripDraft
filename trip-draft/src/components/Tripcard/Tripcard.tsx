@@ -6,14 +6,25 @@ function Tripcard({
   destination,
   fromDate,
   toDate,
+  onDeleteTrip,
+  id,
 }: TripcardProps): JSX.Element {
   return (
-    <div className="card-container">
-      <div className="tripName">{tripName}</div>
-      <div className="destination">{destination}</div>
-      <span className="fromDate">{fromDate}</span> -
-      <span className="toDate">{toDate}</span>
-    </div>
+    <>
+      <div className="card-container">
+        <div>
+          <span className="tripName">{tripName}</span>
+          <span className="destination">{destination}</span>
+        </div>
+        <span className="fromDate">{fromDate}</span> -
+        <span className="toDate">{toDate}</span>
+      </div>
+      <div>
+        <button id={id} onClick={() => onDeleteTrip(id)}>
+          Delete
+        </button>
+      </div>
+    </>
   );
 }
 

@@ -1,7 +1,7 @@
 import { useState, type ChangeEvent } from "react";
-import type { TripFormProps } from "./trip-form.interface";
+import type { TripcardProps } from "../Tripcard/trip-card.interface";
 
-const TripForm = ({ onAddTrip }: TripFormProps) => {
+const TripForm = ({ onAddTrip }: TripcardProps) => {
   const [form, setForm] = useState({
     tripName: "",
     destination: "",
