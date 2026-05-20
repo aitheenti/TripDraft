@@ -1,13 +1,17 @@
-export interface TripcardProps {
+export interface TripData {
   tripName: string;
   destination: string;
   fromDate: string;
   toDate: string;
   id: string;
-  onDeleteTrip: (id: string) => void;
-  onAddTrip?: (id: string) => void;
 }
 
+export interface TripCardProps extends TripData {
+  onDeleteTrip: (id: string) => void;
+}
+
+export type TripFormValues = Omit<TripData, "id">;
+
 export interface TripCardHandler {
-  onDeleteTrip: void;
+  onAddTrip?: (trip: TripFormValues) => void;
 }

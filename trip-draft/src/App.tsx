@@ -3,17 +3,23 @@ import "./App.css";
 import Tripcard from "./components/Tripcard/Tripcard.tsx";
 import { tripCards } from "./mocks/trip-card.mocks";
 import TripForm from "./components/TripForm/TripForm.tsx";
-import type { TripcardProps } from "./components/Tripcard/trip-card.interface.ts";
+import type {
+  TripCardProps,
+  TripData,
+} from "./components/Tripcard/trip-card.interface.ts";
 
 function App() {
-  const [trips, setTrips] = useState(tripCards);
+  const [trips, setTrips] = useState<TripData[]>(tripCards);
 
-  const onAddTrip = (tripToBeAdded: TripcardProps): void => {
-    setTrips([...trips, tripToBeAdded]);
+  const onAddTrip = (tripToBeAdded: TripCardProps): void => {
+    const newTrip: TripData = { ...tripToBeAdded, id: crypto.randomUUID() };
+    setTrips([...trips, newTrip]);
   };
 
   const onDeleteTrip = (tripToBeDeleted: string): void => {
-    setTrips(trips.filter((trip) => trip.id !== tripToBeDeleted));
+    setTrips((prevState) =>
+      prevState.filter((trip) => trip.id !== tripToBeDeleted),
+    );
   };
 
   return (
